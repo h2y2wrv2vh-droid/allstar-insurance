@@ -27,8 +27,8 @@ img { display: block; max-width: 100%; }
 .site-header { background: #fff; border-bottom: 1px solid var(--line); }
 .header-inner { width: var(--shell); margin-inline: auto; min-height: 84px; display: flex; align-items: center; gap: 22px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.logo-tile { width: 56px; height: 56px; background: var(--black); border-radius: 10px; display: grid; place-items: center; overflow: hidden; flex: 0 0 auto; }
-.logo-tile img { width: 100%; height: 100%; object-fit: cover; }
+.brand .logo-tile { width: 56px; height: 56px; background: var(--black); border-radius: 10px; display: grid; place-items: center; overflow: hidden; flex: 0 0 auto; }
+.brand .logo-tile img, .logo-story .logo-tile img { width: 100%; height: 100%; object-fit: cover; }
 .brand-text { line-height: 1.1; }
 .brand-text strong { display: block; font-size: 1.05rem; letter-spacing: 0.12em; }
 .brand-text span { display: block; font-size: 0.72rem; letter-spacing: 0.28em; color: var(--red); font-weight: 800; }
@@ -58,7 +58,7 @@ h1 em { font-style: italic; color: var(--red); }
 .hero-meta strong { color: var(--ink); }
 .hero-side { position: relative; }
 .logo-story { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-.logo-story .logo-tile { width: 72px; height: 72px; border-radius: 12px; }
+.logo-story .logo-tile { width: 72px; height: 72px; background: var(--black); border-radius: 12px; display: grid; place-items: center; overflow: hidden; flex: 0 0 auto; }
 .logo-story h2 { margin: 16px 0 8px; font-family: var(--serif); font-size: 1.5rem; line-height: 1.2; }
 .logo-story p { margin: 0; color: var(--muted); font-size: 0.92rem; }
 .logo-legend { list-style: none; margin: 16px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; }
@@ -154,7 +154,7 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
 .marquee-track { display: flex; width: max-content; animation: marquee 55s linear infinite; }
 /* Logo tiles: uniform optical height, full colour */
-.markets .logo-tile { flex-shrink: 0; margin-right: 14px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 22px; display: flex; align-items: center; justify-content: center; height: 78px; box-sizing: border-box; }
+.markets .logo-tile { flex-shrink: 0; margin-right: 14px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 22px; display: flex; align-items: center; justify-content: center; height: 78px; width: auto; overflow: visible; box-sizing: border-box; }
 .markets .logo-tile img { height: 46px; width: auto; max-width: 160px; object-fit: contain; }
 .markets .logo-tile img.logo-xl { height: 58px; }
 .markets .logo-tile img.logo-wide { height: 52px; max-width: 212px; }
