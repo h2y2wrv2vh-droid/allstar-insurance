@@ -23,15 +23,12 @@ img { display: block; max-width: 100%; }
 .skip:focus { top: 12px; }
 .top-rule { height: 3px; background: var(--red); }
 
-/* Header: light, logo sits in a small black tile so white artwork stays visible */
+/* Header: light, inverted black-on-light logo, no black tile */
 .site-header { background: #fff; border-bottom: 1px solid var(--line); }
 .header-inner { width: var(--shell); margin-inline: auto; min-height: 84px; display: flex; align-items: center; gap: 22px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand .logo-tile { width: 56px; height: 56px; background: var(--black); border-radius: 10px; display: grid; place-items: center; overflow: hidden; flex: 0 0 auto; }
-.brand .logo-tile img, .logo-story .logo-tile img { width: 100%; height: 100%; object-fit: cover; }
-.brand-text { line-height: 1.1; }
-.brand-text strong { display: block; font-size: 1.05rem; letter-spacing: 0.12em; }
-.brand-text span { display: block; font-size: 0.72rem; letter-spacing: 0.28em; color: var(--red); font-weight: 800; }
+.brand-logo { height: 72px; width: auto; display: block; }
+.story-logo { width: 150px; max-width: 100%; height: auto; display: block; }
 .main-nav { margin-left: auto; display: flex; gap: 26px; }
 .main-nav a { text-decoration: none; font-size: 0.9rem; font-weight: 600; color: #3d3934; }
 .main-nav a:hover { color: var(--red); }
@@ -58,7 +55,6 @@ h1 em { font-style: italic; color: var(--red); }
 .hero-meta strong { color: var(--ink); }
 .hero-side { position: relative; }
 .logo-story { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-.logo-story .logo-tile { width: 72px; height: 72px; background: var(--black); border-radius: 12px; display: grid; place-items: center; overflow: hidden; flex: 0 0 auto; }
 .logo-story h2 { margin: 16px 0 8px; font-family: var(--serif); font-size: 1.5rem; line-height: 1.2; }
 .logo-story p { margin: 0; color: var(--muted); font-size: 0.92rem; }
 .logo-legend { list-style: none; margin: 16px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; }
@@ -138,7 +134,6 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 }
 @media (max-width: 560px) {
   .header-inner { min-height: 72px; gap: 12px; }
-  .brand-text strong { font-size: 0.92rem; }
   .hero { padding: 36px 0 48px; }
   section { padding: 52px 0; }
   .portrait { min-height: 380px; }
