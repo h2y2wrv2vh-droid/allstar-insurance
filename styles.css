@@ -96,13 +96,25 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 .checklist li { display: flex; gap: 10px; font-size: 0.92rem; }
 .checklist li::before { content: "✓"; color: var(--red); font-weight: 900; }
 
-/* Approach */
-.approach { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.step { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
-.step-num { color: var(--red); font-family: var(--serif); font-size: 2.4rem; line-height: 1; }
-.step h3 { margin: 14px 0 8px; font-family: var(--serif); font-size: 1.45rem; }
-.step p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+/* Stat strip */
+.stat-strip { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0; }
+.stat-strip::before { content: ""; display: block; height: 3px; background: var(--red); }
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat-cell { padding: 36px 24px; text-align: center; border-left: 1px solid var(--line); }
+.stat-cell:first-child { border-left: 0; }
+.stat-big { font-family: var(--serif); font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.1; font-weight: 600; color: var(--ink); }
+.stat-label { margin-top: 8px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 860px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-cell { border-top: 1px solid var(--line); }
+  .stat-cell:nth-child(-n+2) { border-top: 0; }
+  .stat-cell:nth-child(3) { border-left: 0; }
+}
+@media (max-width: 560px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .stat-cell { border-left: 0; border-top: 1px solid var(--line); padding: 28px 16px; }
+  .stat-cell:first-child { border-top: 0; }
+}
 
 /* Contact */
 .contact { padding-bottom: 72px; }
@@ -127,7 +139,6 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 @media (max-width: 900px) {
   .main-nav { display: none; }
   .hero-grid, .section-head, .advisor-grid, .contact-panel { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; }
   .coverage-grid { grid-template-columns: 1fr; }
   .contact-details { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
   .header-phone { display: none; }
