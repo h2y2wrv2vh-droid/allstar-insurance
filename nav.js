@@ -45,6 +45,8 @@
       if (!item) return;
       var open = item.classList.toggle("open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
+      var a = item.querySelector(".faq-a");
+      if (a) a.style.maxHeight = open ? a.scrollHeight + "px" : "0";
     });
   });
 })();

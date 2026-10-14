@@ -269,3 +269,73 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 @media (min-width: 861px) {
   .main-nav { display: flex; }
 }
+
+/* Subpage restyle (FOUNDATION contract). Homepage-only rules above are untouched. */
+
+/* 1. Topbar */
+.topbar { background: #fff; border-bottom: 1px solid var(--line); font-size: .85rem; }
+.topbar-inner { width: var(--shell); margin-inline: auto; display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; flex-wrap: wrap; }
+.tb-left { display: flex; gap: 18px; }
+.tb-left a { text-decoration: none; font-weight: 600; color: var(--ink); }
+.tb-left a:hover { color: var(--red); }
+.tb-right { color: var(--muted); font-weight: 600; }
+@media (max-width: 720px) { .tb-right { display: none; } }
+
+/* 2. Breadcrumb */
+.breadcrumb { font-size: .88rem; color: var(--muted); margin-bottom: 14px; }
+.breadcrumb a { color: var(--red); font-weight: 600; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* 3. Page-hero (SUBPAGE ONLY; .hero above is untouched) */
+.page-hero { padding: 48px 0 40px; text-align: center; background: var(--paper); }
+.page-hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.05; margin: 0 0 14px; }
+.page-hero .page-lede { max-width: 680px; margin: 0 auto; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+
+/* 4. Centered intro (.eyebrow is reused from above, not redefined) */
+.center-intro { max-width: 720px; margin: 0 auto 36px; text-align: center; }
+.center-intro h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.1; margin: 0 0 12px; }
+.center-intro .lead { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0; }
+
+/* 5. Card grid */
+.grid.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.card h3 { font-family: var(--serif); font-size: 1.25rem; line-height: 1.25; margin: 0 0 8px; }
+.card h3 a { color: var(--ink); text-decoration: none; }
+.card h3 a:hover { color: var(--red); }
+.card p { color: var(--muted); font-size: .95rem; margin: 0 0 14px; }
+.card-link { color: var(--red); font-weight: 700; text-decoration: none; font-size: .92rem; }
+.card-link:hover { text-decoration: underline; }
+@media (max-width: 900px) { .grid.grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .grid.grid-3 { grid-template-columns: 1fr; } }
+
+/* 6. Split */
+.split-section { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 64px 0; }
+.split { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: start; }
+.split h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.1; margin: 0 0 14px; }
+.split p { color: var(--muted); }
+.split-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.split-card h3 { font-family: var(--serif); margin: 0 0 12px; }
+.checklist { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+.checklist li { padding-left: 26px; position: relative; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--red); font-weight: 800; }
+.checklist a { color: var(--red); font-weight: 700; text-decoration: none; }
+/* Split checklists are single-column; this scoping leaves the homepage advisor 2-column checklist alone. */
+.split-card .checklist { grid-template-columns: 1fr; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+/* 7. FAQ (keeps .faq/.faq-item/.faq-q/.faq-a class names, adds collapsed behavior).
+   display:block + padding:0 on .faq-a neutralize the legacy .faq-a display:none/padding so the max-height transition can run. */
+.faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 12px; }
+.faq-list .faq-item { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.faq-list .faq-q { width: 100%; text-align: left; background: none; border: 0; padding: 18px 20px; font-family: var(--sans); font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; align-items: center; color: var(--ink); }
+.faq-list .faq-q::after { content: "+"; color: var(--red); font-weight: 800; font-size: 1.25rem; flex: 0 0 auto; }
+.faq-list .faq-item.open .faq-q::after { content: "−"; }
+.faq-list .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; display: block; padding: 0; }
+.faq-list .faq-a p { margin: 0; padding: 0 20px 18px; color: var(--muted); }
+.faq-list .faq-item.open .faq-a { max-height: 600px; }
+
+/* 8. CTA band (same class names; display:block neutralizes the legacy flex-row .cta-band so the centered stack renders). */
+.cta-band { text-align: center; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 40px 28px; display: block; }
+.cta-band h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0 0 12px; }
+.cta-band p { color: var(--muted); max-width: 560px; margin: 0 auto 24px; }
+.cta-band .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
