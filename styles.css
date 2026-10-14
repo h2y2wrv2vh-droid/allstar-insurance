@@ -146,3 +146,27 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
   .hero-actions .btn, .contact-actions .btn { width: 100%; }
   .checklist { grid-template-columns: 1fr; }
 }
+
+/* Our Insurance Markets marquee - same marquee as Insure With Sunny.
+   Logo-tile rules are scoped under .markets so the header brand tile is untouched. */
+.markets { padding: 44px 0; background: var(--surface); border-bottom: 1px solid var(--line); overflow: hidden; }
+.markets-eyebrow { text-align: center; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 24px; }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 55s linear infinite; }
+/* Logo tiles: uniform optical height, full colour */
+.markets .logo-tile { flex-shrink: 0; margin-right: 14px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 22px; display: flex; align-items: center; justify-content: center; height: 78px; box-sizing: border-box; }
+.markets .logo-tile img { height: 46px; width: auto; max-width: 160px; object-fit: contain; }
+.markets .logo-tile img.logo-xl { height: 58px; }
+.markets .logo-tile img.logo-wide { height: 52px; max-width: 212px; }
+.markets .logo-tile img.logo-big { height: 64px; max-width: 250px; }
+.markets .logo-tile img.logo-bigwide { height: 39px; max-width: 270px; }
+.markets .logo-tile img.logo-md { height: 52px; max-width: 210px; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; } .markets .logo-tile { margin-bottom: 14px; } }
+/* Mobile: no edge fade on the logo marquee */
+@media (max-width: 720px) {
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  /* iOS Safari stops painting <img> contents inside the sliding track.
+     Promoting each logo to its own compositing layer keeps them painted. */
+  .markets .logo-tile img { -webkit-transform: translateZ(0); transform: translateZ(0); }
+}
