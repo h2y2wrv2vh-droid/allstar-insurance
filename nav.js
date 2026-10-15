@@ -50,3 +50,39 @@
     });
   });
 })();
+
+/* Ported effects: scroll reveals, header shadow on scroll, back-to-top. */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".card, .coverage-card, .related-card, .stat-cell, .logo-story").forEach(function (el) {
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+})();
+(function () {
+  var h = document.querySelector(".site-header");
+  if (!h) return;
+  function onScroll() { h.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var b = document.createElement("button");
+  b.className = "to-top";
+  b.setAttribute("aria-label", "Back to top");
+  b.textContent = "↑";
+  document.body.appendChild(b);
+  window.addEventListener("scroll", function () {
+    b.classList.toggle("show", window.scrollY > 600);
+  }, { passive: true });
+  b.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  });
+})();
