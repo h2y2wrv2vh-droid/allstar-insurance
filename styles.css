@@ -378,3 +378,16 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 
 /* Selection. */
 ::selection { background: var(--red); color: #fff; }
+
+/* Quote form (contact page). */
+.quote-form { margin-top: 22px; }
+.quote-form .form-row { margin-bottom: 16px; }
+.quote-form label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 0.9rem; }
+.quote-form input[type="text"], .quote-form input[type="tel"], .quote-form input[type="email"], .quote-form select, .quote-form textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font: inherit; font-size: 1rem; }
+.quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { outline: 2px solid var(--red); border-color: var(--red); }
+.quote-form textarea { resize: vertical; min-height: 110px; }
+.quote-form .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-status { margin-top: 14px; font-weight: 600; }
+.form-status.success { color: #1a7a3a; }
+.form-status.error { color: var(--red-deep); }
+.form-note { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }

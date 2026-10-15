@@ -113,12 +113,49 @@
       <div class="split-text">
         <p class="eyebrow">Request a quote</p>
         <h2>Request a quote</h2>
-        <p>To request a quote, call or email Dilbag. There is no online form on this page. When you call or email, Dilbag responds.</p>
-        <ul class="coverage-list">
-          <li><strong>Call:</strong> <a href="tel:+14164561010">416 456 1010</a></li>
-          <li><strong>Email:</strong> <a href="mailto:dilbag.grewal@aaxelinsurance.com?subject=Quote%20request">Send a quote request by email</a></li>
-        </ul>
-        <p>Helpful details to include in your email: what you would like covered, where you are located in Ontario, and the best way for Dilbag to reach you.</p>
+        <p>Fill in the form and your request is sent to Dilbag by email. He will get back to you about your quote. If you need a faster answer, call <a href="tel:+14164561010">416 456 1010</a>.</p>
+        <form class="quote-form" id="quote-form" action="https://formsubmit.co/dilbag.grewal@aaxelinsurance.com" method="POST">
+          <input type="hidden" name="_subject" value="New quote request from AllStar Insurance website">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form-row">
+            <label for="qf-name">Full name</label>
+            <input id="qf-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="form-row">
+            <label for="qf-phone">Phone</label>
+            <input id="qf-phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="form-row">
+            <label for="qf-email">Email</label>
+            <input id="qf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="form-row">
+            <label for="qf-coverage">Coverage type</label>
+            <select id="qf-coverage" name="coverage" required>
+              <option value="" selected>Choose one</option>
+              <option>Home Insurance</option>
+              <option>Auto Insurance</option>
+              <option>Condo Insurance</option>
+              <option>Renters Insurance</option>
+              <option>Motorcycle Insurance</option>
+              <option>Business Insurance</option>
+              <option>Commercial Insurance</option>
+              <option>Commercial Auto Insurance</option>
+              <option>Life and Financial Services</option>
+              <option>Travel Insurance</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="qf-message">Details (optional)</label>
+            <textarea id="qf-message" name="message" rows="5" placeholder="Tell Dilbag what you would like covered, where you are located in Ontario, and the best way to reach you."></textarea>
+          </div>
+          <button class="btn" type="submit">Send quote request</button>
+        </form>
+        <p class="form-status" id="quote-status" role="status" aria-live="polite"></p>
+        <p class="form-note">Your details are sent to Dilbag at AllStar Insurance so he can respond to your quote request.</p>
       </div>
       <aside class="split-card">
         <h3>Talk with Dilbag</h3>
@@ -192,5 +229,58 @@
   </div>
 </footer>
 <div class="callbar"><a href="tel:+14164561010">Call 416 456 1010</a><a href="tel:+14164561010">Get a Quote</a></div>
+<script>
+(function () {
+  var form = document.getElementById("quote-form");
+  var status = document.getElementById("quote-status");
+  if (!form || !status) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var fd = new FormData(form);
+    var data = {
+      name: (fd.get("name") || "").toString().trim(),
+      phone: (fd.get("phone") || "").toString().trim(),
+      email: (fd.get("email") || "").toString().trim(),
+      coverage: (fd.get("coverage") || "").toString(),
+      message: (fd.get("message") || "").toString().trim(),
+      _subject: "New quote request from AllStar Insurance website",
+      _template: "table",
+      _captcha: "false",
+      _honey: (fd.get("_honey") || "").toString()
+    };
+    if (!data.name || !data.phone || !data.email || !data.coverage) {
+      status.textContent = "Please fill in your name, phone, email, and coverage type.";
+      status.className = "form-status error";
+      return;
+    }
+    var btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+    status.textContent = "";
+    status.className = "form-status";
+    fetch("https://formsubmit.co/ajax/dilbag.grewal@aaxelinsurance.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function (res) { return res.json(); }).then(function (out) {
+      if (out && (out.success === true || out.success === "true")) {
+        form.style.display = "none";
+        status.textContent = "Thanks, your request was sent. Dilbag will get back to you. If you need a faster answer, call 416 456 1010.";
+        status.className = "form-status success";
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Send quote request";
+        status.textContent = (out && out.message) ? out.message + " If this keeps happening, call Dilbag at 416 456 1010 or email him directly." : "Something went wrong sending your request. Please call Dilbag at 416 456 1010 or email him directly.";
+        status.className = "form-status error";
+      }
+    }).catch(function () {
+      btn.disabled = false;
+      btn.textContent = "Send quote request";
+      status.textContent = "Something went wrong sending your request. Please call Dilbag at 416 456 1010 or email him directly.";
+      status.className = "form-status error";
+    });
+  });
+})();
+</script>
 </body>
 </html>
