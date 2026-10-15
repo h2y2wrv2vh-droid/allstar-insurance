@@ -361,7 +361,7 @@ h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.4rem)
 .card-link:hover { text-decoration: none; }
 
 /* Scroll reveals (.reveal is only added by JS, so no-JS pages stay visible). */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity .9s ease, transform .9s ease; }
 .reveal.in { opacity: 1; transform: none; }
 /* Revealed cards must still lift on hover (.reveal.in would otherwise override :hover transform). */
 .card.reveal.in:hover, .coverage-card.reveal.in:hover, .related-card.reveal.in:hover, .logo-story.reveal.in:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(23, 21, 18, .12); transition: transform .18s ease, box-shadow .18s ease; }

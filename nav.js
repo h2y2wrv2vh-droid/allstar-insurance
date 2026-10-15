@@ -60,8 +60,11 @@
       if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll(".card, .coverage-card, .related-card, .stat-cell, .logo-story").forEach(function (el) {
+  document.querySelectorAll(".card, .coverage-card, .related-card, .stat-cell, .logo-story, .section-head, .page-hero h1, .page-hero p, .page-hero .breadcrumb, .stat-strip, .services .section-head, .cta-band, .hero h1, .hero .lede, .hero-actions, .hero-side").forEach(function (el, i) {
     el.classList.add("reveal");
+    var p = el.parentNode;
+    var isGridChild = p && p.classList && (p.classList.contains("grid") || p.classList.contains("grid-3") || p.classList.contains("coverage-grid") || p.classList.contains("related-grid") || p.classList.contains("stat-grid"));
+    el.style.transitionDelay = isGridChild ? ((i % 3) * 90) + "ms" : "0ms";
     io.observe(el);
   });
 })();
